@@ -12,6 +12,6 @@ mix.sass('resources/css/main.scss', 'public/dist')
             sideEffects: false,
             usedExports: false
         },
-        mode: "development",
+        mode: "production",
     })
     .version();
