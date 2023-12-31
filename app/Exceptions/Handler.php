@@ -26,5 +26,22 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+
+        $this->renderable(function (\Illuminate\Auth\AuthenticationException $e, $request) {
+            if ($request->is('api/*')) {
+                return apiResponse([
+                    'error' => true,
+                    'message' => 'Not authenticated'
+                ]);
+            }
+        });
+        $this->renderable(function (\Spatie\Permission\Exceptions\UnauthorizedException $e, $request) {
+            if ($request->is('api/*')) {
+                return apiResponse([
+                    'error' => true,
+                    'message' => 'Unauthorize action for this role'
+                ]);
+            }
+        });
     }
 }
