@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('phone', 15)->nullable();
+            $table->string('phone', 20)->nullable();
             $table->json('current_vehicle')->nullable()
                 ->comment('Only used for drivers');
             $table->string('driving_license_number', 50)->nullable();
