@@ -52,3 +52,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('vehicle-brands', [VehicleBrandController::class, 'index'])->name('master.vehicle-brands');
     });
 });
+
+Route::get('/', function() {
+    echo 'welcome!';
+});

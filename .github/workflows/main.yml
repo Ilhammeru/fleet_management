@@ -1,10 +1,10 @@
 name: Fleet Manager Workflow
 on:
-  push:
+  pull_request:
     branches: [ main ]
 
 jobs:
-  web-deploy:
+  push:
     name: Deploying
     runs-on: ubuntu-latest
     steps:
