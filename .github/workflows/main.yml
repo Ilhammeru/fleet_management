@@ -1,7 +1,7 @@
 name: Fleet Manager Workflow
 on:
   pull_request:
-    branches: [ develop ]
+    branches: [ main ]
 
 jobs:
   web-deploy:
