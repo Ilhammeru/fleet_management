@@ -10,6 +10,20 @@ jobs:
     name: Deploying
     runs-on: ubuntu-latest
     steps:
+      - name: Get latest code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          check-latest: false
+
+      - name: Build project
+        run:
+          npm install
+          npm run prod
+          
       - name: Sync Files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with: 
