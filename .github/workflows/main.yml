@@ -4,8 +4,8 @@ on:
     branches: [ main ]
 
 jobs:
-  push:
-    name: Deploying
+  pull_request:
+    name: Running Check
     runs-on: ubuntu-latest
     steps:
       - name: Get latest code
@@ -43,3 +43,16 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
         run: vendor/bin/phpunit
+
+  push:
+    name: Deploying
+    uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.SERVER }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        server-dir: ./fleet.kintech.my.id/
+        exclude: |
+          **/vendor/**
+          **/node_modules/**
+          **/public/assets/plugins/**
