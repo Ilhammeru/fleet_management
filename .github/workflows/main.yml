@@ -2,6 +2,8 @@ name: Fleet Manager Workflow
 on:
   pull_request:
     branches: [ main ]
+  push:
+    branches: [ main ]
 
 jobs:
   pull_request:
