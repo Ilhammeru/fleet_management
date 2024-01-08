@@ -48,13 +48,19 @@ jobs:
 
   push:
     name: Deploying
-    uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ${{ secrets.SERVER }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        server-dir: ./fleet.kintech.my.id/
-        exclude: |
-          **/vendor/**
-          **/node_modules/**
-          **/public/assets/plugins/**
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get latest code
+        uses: actions/checkout@v4
+
+      - name: Deploy to server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+          with:
+            server: ${{ secrets.SERVER }}
+            username: ${{ secrets.USERNAME }}
+            password: ${{ secrets.PASSWORD }}
+            server-dir: ./fleet.kintech.my.id/
+            exclude: |
+              **/vendor/**
+              **/node_modules/**
+              **/public/assets/plugins/**
