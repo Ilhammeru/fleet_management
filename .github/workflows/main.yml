@@ -27,8 +27,8 @@ jobs:
 
       - name: Copy env
         run: |
-          cp .env.example .env
           php artisan key:generate
+          cp .env.example .env
 
       - name: Clear config
         run: php artisan config:clear
