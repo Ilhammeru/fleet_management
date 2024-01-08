@@ -20,6 +20,9 @@ class OfficeService {
     {
         $select = 'id,name,address,province_id,city_id,district_id,village_id,latitude,longitude,office_type';
 
+        // testing comment
+        // check comment update
+
         $where = null;
         if (request()->office_type) {
             $where = 'office_type = ' . request()->office_type;
