@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 
 jobs:
-  Build asset:
+  Build-asset:
     if: github.event_name == 'pull_request'
     name: Running Check
     runs-on: ubuntu-latest
