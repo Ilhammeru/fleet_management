@@ -12,7 +12,16 @@ jobs:
     steps:
       - name: Get latest code
         uses: actions/checkout@v4
-        
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Install PHP packages
+        run: |
+          composer install --no-scripts
+
       - name: Setup Node 18
         uses: actions/setup-node@v4
         with:
@@ -23,11 +32,11 @@ jobs:
         run:
           npm install
           npm run prod
-          
+
       - name: Sync Files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with: 
+        with:
           server: ${{ secrets.SERVER }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          server-dir: ./fleet-github/
+          server-dir: ./fleet.kintech.my.id/
