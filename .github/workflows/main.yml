@@ -1,0 +1,19 @@
+name: Fleet Management
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  web-deploy:
+    name: Deploying
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync Files
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with: 
+          servier: ${{ secrets.SERVER }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          server-dir: ./fleet-github/
