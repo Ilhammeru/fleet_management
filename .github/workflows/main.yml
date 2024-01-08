@@ -49,7 +49,6 @@ jobs:
 
   Deploying:
     if: github.event_name == 'push'
-    needs: Build-asset
     name: Deploying to server
     runs-on: ubuntu-latest
     steps:
