@@ -1,9 +1,7 @@
-name: Fleet Management
+name: Fleet Manager Workflow
 on:
-  push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
+    branches: [ develop ]
 
 jobs:
   web-deploy:
@@ -22,6 +20,22 @@ jobs:
         run: |
           composer install --no-scripts
 
+      - name: Create database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+
+      - name: Copy env
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Clear config
+        run: php artisan config:clear
+
+      - name: Clear cache
+        run: php artisan cache:clear
+
       - name: Setup Node 18
         uses: actions/setup-node@v4
         with:
@@ -33,10 +47,8 @@ jobs:
           npm install
           npm run prod
 
-      - name: Sync Files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.SERVER }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          server-dir: ./fleet.kintech.my.id/
+      - name: Execute Test
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
+        run: vendor/bin/phpunit
