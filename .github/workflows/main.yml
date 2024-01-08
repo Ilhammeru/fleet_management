@@ -13,7 +13,7 @@ jobs:
       - name: Sync Files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with: 
-          servier: ${{ secrets.SERVER }}
+          server: ${{ secrets.SERVER }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           server-dir: ./fleet-github/
