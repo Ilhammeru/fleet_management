@@ -93,6 +93,8 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           server-dir: ./fleet.kintech.my.id/
           exclude: |
+            **/vendor/**
+            **/node_modules/**
             **/public/assets/plugins/**
             **/storage/*.key
             **/storage/framework/cache/**
